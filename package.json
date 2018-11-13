@@ -1,0 +1,38 @@
+{
+  "name": "electron-learning",
+  "version": "1.0.0",
+  "description": "Learning ElectronJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug",
+    "test": "mocha && standard",
+    "package": "npm-run-all package:*",
+    "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=out --icon=assets/app-icon/mac/app.icns --osx-sign.identity='Developer ID Application: MikeMunsie' --extend-info=assets/mac/info.plist",
+    "package:win": "electron-packager . --overwrite --platform=win32 --arch=ia32 --out=out --icon=assets/app-icon/win/app.ico",
+    "package:linux": "electron-packager . --overwrite --platform=linux --arch=x64 --out=out",
+    "package:sign-exe": "signcode './out/Electron API Demos-win32-ia32/Electron API Demos.exe' --cert ~/electron-api-demos.p12 --prompt --name 'Electron API Demos' --url 'http://electron.atom.io'",
+    "package:installer": "node ./script/installer.js",
+    "package:sign-installer": "signcode './out/windows-installer/ElectronAPIDemosSetup.exe' --cert ~/electron-api-demos.p12 --prompt --name 'Electron API Demos' --url 'http://electron.atom.io'",
+    "xpackage:mas": "./script/mas.sh",
+    "windows-store": "node ./script/windows-store.js",
+    "release": "node ./script/release.js",
+    "prepack": "check-for-leaks",
+    "prepush": "check-for-leaks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikemunsie/electron-learning.git"
+  },
+  "author": "Mike Munsie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikemunsie/electron-learning/issues"
+  },
+  "homepage": "https://github.com/mikemunsie/electron-learning#readme",
+  "devDependencies": {
+    "electron": "^3.0.9",
+    "electron-packager": "^12.2.0"
+  },
+  "private": true
+}
